@@ -21,17 +21,34 @@ TunnelDTK::TunnelDTK(int const oldDepth,int const xPut,int const yPut,int const 
 	c=cPut;
 }
 
+TunnelDTK::TunnelDTK(int const oldDepth,int const xPut,int const yPut,int const widthPut,int const heightPut){
+	tunnelDepth=oldDepth+1;
+	x=xPut;
+	y=yPut;
+	width=widthPut;
+	height=heightPut;
+}
+
 void TunnelDTK::drawSquare(Graphics& gfx)const{
 	gfx.drawRect(x,y,width,height,c);
 }
 
-TunnelDTK TunnelDTK::dig(int const depth){
+void TunnelDTK::setColor(int const depth,const Color& cPut){
+	/*dig(depth).*/c=cPut;
+}
+
+void TunnelDTK::createTunnel(int const depth){
+	int depthO=tunnelDepth;
+	int xO=x;
+	int yO=y;
+	int widthO=width;
+	int heightO=height;
+	dig(depth).tunnel.height=heightO;
+}
+
+TunnelDTK TunnelDTK::dig(int depth){
 	if(depth==tunnelDepth){
 		return tunnel;
 	}
-	return thunnel.dig(depth);
-}
-
-void TunnelDTK::setColor(int const depth,const Color& cPut){
-	dig(depth).setColor(cPut);
+	return tunnel.dig(depth);
 }
