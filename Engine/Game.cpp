@@ -24,8 +24,20 @@
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
-	gfx( wnd )
+	gfx( wnd ),
+	tunnel(20,20,20,20,Colors::Blue)
 {
+	tunnel.createTunnel(5);
+	Color c=Colors::Red;
+	tunnel.setColor(1,c);
+	c=Colors::Yellow;
+	tunnel.setColor(2,c);
+	c=Colors::Gray;
+	tunnel.setColor(3,c);
+	c=Colors::Green;
+	tunnel.setColor(4,c);
+	c=Colors::Magenta;
+	tunnel.setColor(5,c);
 }
 
 void Game::Go()
@@ -42,4 +54,12 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
+	if(++frameCurrent==frameRate){
+		frameCurrent=0;
+		step++;
+	}
+	if(step==4){
+		step=0;//todo get stepper to work
+	}
+	tunnel.drawSquareSpec(step,gfx);
 }

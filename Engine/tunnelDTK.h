@@ -3,7 +3,7 @@
 
 class TunnelDTK{
 public:
-	TunnelDTK();
+	TunnelDTK()=default;
 	TunnelDTK(int const xPut,int const yPut,int const widthPut,int const heightPut,const Color& cPut);
 	TunnelDTK(int const oldDepth,int const xPut,int const yPut,int const widthPut,int const heightPut,const Color& cPut);
 	TunnelDTK(int const oldDepth,int const xPut,int const yPut,int const widthPut,int const heightPut);
@@ -16,8 +16,9 @@ private:
 	int y;
 public:
 	void drawSquare(Graphics& gfx) const;
-	void setColor(int const depth,const Color& cPut);
+	void setColor(int const depth,Color& const cPut);
+	void drawSquareSpec(int const depth,Graphics& gfx);
 	void createTunnel(int depth);
-	TunnelDTK tunnel;
-	TunnelDTK dig(int depth);
+	TunnelDTK*dig(int depth);
+	TunnelDTK*tunnel;
 };

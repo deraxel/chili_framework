@@ -301,6 +301,14 @@ void Graphics::EndFrame()
 	}
 }
 
+void Graphics::drawRect(int x,int y,int width,int height,Color c){
+	for(int iY=0; iY<height; iY++){
+		for(int iX=0; iX<width; iX++){
+			PutPixel(x+iX,y+iY,c);
+		}
+	}
+}
+
 void Graphics::BeginFrame()
 {
 	// clear the sysbuffer

@@ -23,6 +23,7 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "tunnelDTK.h"
 
 class Game
 {
@@ -34,6 +35,10 @@ public:
 private:
 	void ComposeFrame();
 	void UpdateModel();
+	static constexpr int frameRate=60;
+	int frameCurrent=0;
+	TunnelDTK tunnel;
+	int step=0;
 	/********************************/
 	/*  User Functions              */
 	/********************************/
