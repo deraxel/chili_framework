@@ -25,19 +25,46 @@ Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd ),
-	tunnel(20,20,20,20,Colors::Blue)
+	tunnel()
 {
 	tunnel.createTunnel(5);
-	Color c=Colors::Red;
-	tunnel.setColor(1,c);
+	Color c=Colors::Blue;
+	tunnel.dataFile(0).setColor(c);
+	tunnel.dataFile(0).setThing(0,100);
+	tunnel.dataFile(0).setThing(1,100);
+	tunnel.dataFile(0).setThing(2,200);
+	tunnel.dataFile(0).setThing(3,200);
+	tunnel.dataFile(0).thing2=17.0f;
+	c=Colors::Red;
+	tunnel.dataFile(1).setColor(c);
+	tunnel.dataFile(1).setThing(0,100);
+	tunnel.dataFile(1).setThing(1,100);
+	tunnel.dataFile(1).setThing(2,200);
+	tunnel.dataFile(1).setThing(3,200);
 	c=Colors::Yellow;
-	tunnel.setColor(2,c);
+	tunnel.dataFile(2).setColor(c);
+	tunnel.dataFile(2).setThing(0,100);
+	tunnel.dataFile(2).setThing(1,100);
+	tunnel.dataFile(2).setThing(2,200);
+	tunnel.dataFile(2).setThing(3,200);
 	c=Colors::Gray;
-	tunnel.setColor(3,c);
+	tunnel.dataFile(3).setColor(c);
+	tunnel.dataFile(3).setThing(0,100);
+	tunnel.dataFile(3).setThing(1,100);
+	tunnel.dataFile(3).setThing(2,200);
+	tunnel.dataFile(3).setThing(3,200);
 	c=Colors::Green;
-	tunnel.setColor(4,c);
+	tunnel.dataFile(4).setColor(c);
+	tunnel.dataFile(4).setThing(0,100);
+	tunnel.dataFile(4).setThing(1,100);
+	tunnel.dataFile(4).setThing(2,200);
+	tunnel.dataFile(4).setThing(3,200);
 	c=Colors::Magenta;
-	tunnel.setColor(5,c);
+	tunnel.dataFile(5).setColor(c);
+	tunnel.dataFile(5).setThing(0,100);
+	tunnel.dataFile(5).setThing(1,100);
+	tunnel.dataFile(5).setThing(2,200);
+	tunnel.dataFile(5).setThing(3,200);
 }
 
 void Game::Go()
@@ -54,12 +81,18 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	if(++frameCurrent==frameRate){
+	frameCurrent++;
+	if(frameCurrent==frameRate){
 		frameCurrent=0;
 		step++;
 	}
-	if(step==4){
-		step=0;//todo get stepper to work
+	if(step==6){
+		step=0;
 	}
-	tunnel.drawSquareSpec(step,gfx);
+	gfx.drawRect(
+		tunnel.dataFile(step).getThing(0),
+		tunnel.dataFile(step).getThing(1),
+		tunnel.dataFile(step).getThing(2),
+		tunnel.dataFile(step).getThing(3),
+		tunnel.dataFile(step).getColor());
 }
